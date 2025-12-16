@@ -4,4 +4,4 @@ metadata:
   name: cliet-tableaux-angular
 spec:
   rules:
-  - host: app.mondomaine.fr
+  - host: www.cliet-tableaux.fr
