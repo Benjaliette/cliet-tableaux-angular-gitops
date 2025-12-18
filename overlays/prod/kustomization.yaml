@@ -6,8 +6,8 @@ namespace: production
 nameSuffix: -prod
 
 replicas:
-  - name: cliet-tableaux-angular
-    count: 3
+- count: 3
+  name: cliet-tableaux-angular
 
 resources:
   - ../../base
@@ -15,9 +15,11 @@ resources:
   - replicas.yaml
 
 patchesStrategicMerge:
-  - ingress-patch.yaml
+- ingress-patch.yaml
 
 images:
-  - name: app-image
-    newName: ghcr.io/Benjaliette/cliet-tableaux-angular
-    newTag: latest
+- name: app-image
+  newName: ghcr.io/Benjaliette/cliet-tableaux-angular
+  newTag: latest
+- name: cliet-tableaux-angular
+  newName: ghcr.io/benjaliette/cliet-tableaux-angular
