@@ -3,9 +3,6 @@ kind: Kustomization
 
 namespace: production
 
-bases:
-  - ../../base
-
 nameSuffix: -prod
 
 replicas:
@@ -13,6 +10,7 @@ replicas:
     count: 3
 
 resources:
+  - ../../base
   - namespace.yaml
   - replicas.yaml
 
