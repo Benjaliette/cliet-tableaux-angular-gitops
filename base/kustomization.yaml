@@ -14,5 +14,5 @@ commonLabels:
 
 images:
   - name: app-image
-    newName: ghcr.io/Benjaliette/cliet-tableaux-angular
+    newName: ghcr.io/benjaliette/cliet-tableaux-angular
     newTag: latest
