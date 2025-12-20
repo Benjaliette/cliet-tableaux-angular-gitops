@@ -10,8 +10,8 @@ replicas:
   name: cliet-tableaux-angular
 
 resources:
-  - ../../base
-  - namespace.yaml
+- ../../base
+- namespace.yaml
 
 patchesStrategicMerge:
 - ingress-patch.yaml
@@ -20,3 +20,5 @@ images:
 - name: app-image
   newName: ghcr.io/benjaliette/cliet-tableaux-angular
   newTag: latest
+- name: cliet-tableaux-angular
+  newName: ghcr.io/benjaliette/cliet-tableaux-angular
