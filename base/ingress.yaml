@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: cliet-tableaux-angular
+  name: cliet-tableaux-angular-ingress
   namespace: cliet-tableaux
   annotations:
     spec.ingressClassName: "traefik"

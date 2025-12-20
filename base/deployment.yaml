@@ -22,7 +22,7 @@ spec:
       - name: angular
         image: cliet-tableaux-angular:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 80
           protocol: TCP
         securityContext:
           allowPrivilegeEscalation: false

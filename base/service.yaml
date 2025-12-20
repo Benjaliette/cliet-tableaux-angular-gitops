@@ -2,12 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: cliet-tableaux-angular
+  namespace: cliet-tableaux
 spec:
-  type: ClusterIP
-  ports:
-    - port: 80
-      targetPort: 8080
-      protocol: TCP
-      name: http
   selector:
     app: cliet-tableaux-angular
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP
