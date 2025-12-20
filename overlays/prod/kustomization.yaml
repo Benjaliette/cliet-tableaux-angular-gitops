@@ -19,4 +19,3 @@ patchesStrategicMerge:
 images:
 - name: app-image
   newName: ghcr.io/benjaliette/cliet-tableaux-angular
-  newTag: latest
