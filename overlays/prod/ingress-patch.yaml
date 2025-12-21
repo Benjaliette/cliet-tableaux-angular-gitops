@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: cliet-tableaux-angular
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: redirect-to-www-prod@kubernetescrd,redirect-to-https-prod@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: production-redirect-to-www-prod@kubernetescrd,production-redirect-to-https-prod@kubernetescrd
 spec:
   rules:
   - host: www.cliet-tableaux.fr
