@@ -1,0 +1,10 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-to-www
+  namespace: production
+spec:
+  redirectRegex:
+    regex: "^https?://cliet-tableaux.fr/(.*)"
+    replacement: "https://www.cliet-tableaux.fr/${1}"
+    permanent: true
