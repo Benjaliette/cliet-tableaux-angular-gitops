@@ -2,8 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: cliet-tableaux-angular
-  annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: production-redirect-to-www-prod@kubernetescrd
 spec:
   rules:
   - host: www.cliet-tableaux.fr

@@ -12,7 +12,6 @@ replicas:
 resources:
 - ../../base
 - namespace.yaml
-- middleware.yaml
 
 patchesStrategicMerge:
 - ingress-patch.yaml
