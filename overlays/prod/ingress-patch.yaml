@@ -3,8 +3,8 @@ kind: Ingress
 metadata:
   name: cliet-tableaux-angular
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
-    traefik.ingress.kubernetes.io/router.middlewares: production-redirect-to-www-prod@kubernetescrd,production-redirect-to-https-prod@kubernetescrd
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: production-redirect-to-www-prod@kubernetescrd
 spec:
   rules:
   - host: www.cliet-tableaux.fr
@@ -31,3 +31,35 @@ spec:
   - hosts:
     - www.cliet-tableaux.fr
     - cliet-tableaux.fr
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cliet-tableaux-angular-redirect
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.middlewares: production-redirect-to-https-prod@kubernetescrd
+spec:
+  rules:
+  - host: www.cliet-tableaux.fr
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: cliet-tableaux-angular
+            port:
+              number: 80
+  - host: cliet-tableaux.fr
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: cliet-tableaux-angular
+            port:
+              number: 80
