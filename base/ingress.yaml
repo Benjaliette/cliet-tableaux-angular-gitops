@@ -7,7 +7,6 @@ metadata:
     spec.ingressClassName: "traefik"
     traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
     traefik.ingress.kubernetes.io/router.tls.certresolver: default
-    traefik.ingress.kubernetes.io/router.middlewares: redirect-to-www@kubernetescrd,redirect-to-https@kubernetescrd
 spec:
   rules:
     - host: www.cliet-tableaux.fr

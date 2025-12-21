@@ -7,7 +7,6 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
-  - middleware.yaml
 
 commonLabels:
   app: cliet-tableaux-angular
