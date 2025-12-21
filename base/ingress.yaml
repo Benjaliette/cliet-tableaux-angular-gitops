@@ -5,8 +5,32 @@ metadata:
   namespace: cliet-tableaux
   annotations:
     spec.ingressClassName: "traefik"
-    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
     traefik.ingress.kubernetes.io/router.tls.certresolver: default
+spec:
+  rules:
+    - host: www.cliet-tableaux.fr
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: cliet-tableaux-angular
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - www.cliet-tableaux.fr
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cliet-tableaux-angular-redirect
+  namespace: cliet-tableaux
+  annotations:
+    spec.ingressClassName: "traefik"
 spec:
   rules:
     - host: www.cliet-tableaux.fr
