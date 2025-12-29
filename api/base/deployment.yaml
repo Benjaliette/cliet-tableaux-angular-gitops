@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cliet-tableaux-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cliet-tableaux-api
+  template:
+    metadata:
+      labels:
+        app: cliet-tableaux-api
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      imagePullSecrets:
+      - name: ghcr-secret
+      containers:
+      - name: api
+        image: api-image:latest
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+          name: http
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: cliet-tableaux-api-secrets
+              key: database-url
+        - name: DATABASE_USER
+          valueFrom:
+            secretKeyRef:
+              name: cliet-tableaux-api-secrets
+              key: database-username
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: cliet-tableaux-api-secrets
+              key: database-password
+        - name: JWT_KEY
+          valueFrom:
+            secretKeyRef:
+              name: cliet-tableaux-api-secrets
+              key: jwt-secret
+        - name: CLOUDINARY_API_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: cliet-tableaux-api-secrets
+              key: cloudinary-secret
+        - name: SENDGRID_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: cliet-tableaux-api-secrets
+              key: sendgrid-secret
+        - name: STRIPE_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: cliet-tableaux-api-secrets
+              key: stripe-secret
+        - name: STRIPE_WEBHOOK_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: cliet-tableaux-api-secrets
+              key: stripe-webhook-secret
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
+        - name: SERVER_PORT
+          value: "8080"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+              - ALL
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /actuator/health/liveness
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /actuator/health/readiness
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: tmp
+        emptyDir: {}
