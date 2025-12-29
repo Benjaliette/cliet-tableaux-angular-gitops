@@ -31,42 +31,42 @@ spec:
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
-              name: cliet-tableaux-api-secrets
+              name: backend-secret
               key: database-url
         - name: DATABASE_USER
           valueFrom:
             secretKeyRef:
-              name: cliet-tableaux-api-secrets
+              name: backend-secret
               key: database-username
         - name: DATABASE_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: cliet-tableaux-api-secrets
+              name: backend-secret
               key: database-password
         - name: JWT_KEY
           valueFrom:
             secretKeyRef:
-              name: cliet-tableaux-api-secrets
+              name: backend-secret
               key: jwt-secret
         - name: CLOUDINARY_API_SECRET
           valueFrom:
             secretKeyRef:
-              name: cliet-tableaux-api-secrets
+              name: backend-secret
               key: cloudinary-secret
         - name: SENDGRID_API_KEY
           valueFrom:
             secretKeyRef:
-              name: cliet-tableaux-api-secrets
+              name: backend-secret
               key: sendgrid-secret
         - name: STRIPE_API_KEY
           valueFrom:
             secretKeyRef:
-              name: cliet-tableaux-api-secrets
+              name: backend-secret
               key: stripe-secret
         - name: STRIPE_WEBHOOK_SECRET
           valueFrom:
             secretKeyRef:
-              name: cliet-tableaux-api-secrets
+              name: backend-secret
               key: stripe-webhook-secret
         - name: SPRING_PROFILES_ACTIVE
           value: "prod"
