@@ -16,7 +16,6 @@ resources:
 
 patchesStrategicMerge:
 - ingress-patch.yaml
-- replicas.yaml
 
 images:
 - name: api-image
