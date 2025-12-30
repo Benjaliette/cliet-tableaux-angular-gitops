@@ -20,5 +20,5 @@ patchesStrategicMerge:
 
 images:
 - name: api-image
-  newName: ghcr.io/benjaliette/cliet-tableaux-api
-  newTag: latest
+  newName: ghcr.io/Benjaliette/cliet-tableaux-api
+  newTag: main-0fbe13d
